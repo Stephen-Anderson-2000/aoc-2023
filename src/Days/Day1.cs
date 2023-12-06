@@ -8,4 +8,15 @@ public class Day1
         var matches = Regex.Matches(calString, "[0-9]");
         return matches.Count > 0 ? int.Parse(matches.First().Value + matches.Last().Value) : 0;
     }
+
+    public static int SumCalibrationValues(string[] calStrings)
+    {
+        var total = 0;
+        foreach (var calString in calStrings)
+        {
+            total += GetCalibrationFromString(calString);
+        }
+
+        return total;
+    }
 }
