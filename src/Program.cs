@@ -31,6 +31,7 @@ switch (userChoice)
     case 2:
         var input = Day2.ReadGameInput(lines);
         Console.WriteLine($"{Day2.SumPossibleGameIDs(input)}");
+        Console.WriteLine($"{Day2.SumMinimumCubePowers(input)}");
         break;
     default:
         Console.WriteLine("Day not yet supported");

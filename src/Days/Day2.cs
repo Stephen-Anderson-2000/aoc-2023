@@ -36,14 +36,10 @@ public class Day2
     public static int SumPossibleGameIDs(Dictionary<int, List<List<KeyValuePair<string, int>>>> games)
     {
         var total = 0;
-        var debug = new List<int>();
         foreach (var game in games)
         {
             if (IsGamePossible(StartingRed, StartingGreen, StartingBlue, game.Value))
-            {
                 total += game.Key;
-                debug.Add(game.Key);
-            }
         }
 
         return total;
@@ -79,5 +75,52 @@ public class Day2
         }
 
         return gameInput;
+    }
+
+    public static int FindMinimumCubePowers(List<List<KeyValuePair<string, int>>> gameSequence)
+    {
+        var maxRed = 0;
+        var maxGreen = 0;
+        var maxBlue = 0;
+
+        foreach (var game in gameSequence)
+        {
+            foreach (var cube in game)
+            {
+                switch (cube.Key)
+                {
+                    case "red":
+                        if (cube.Value > maxRed)
+                            maxRed = cube.Value;
+                        break;
+                    case "green":
+                        if (cube.Value > maxGreen)
+                            maxGreen = cube.Value;
+                        break;
+                    case "blue":
+                        if (cube.Value > maxBlue)
+                            maxBlue = cube.Value;
+                        break;
+                }
+            }
+        }
+
+        if (maxRed == 0)
+            maxRed = 1;
+        if (maxGreen == 0)
+            maxGreen = 1;
+        if (maxBlue == 0)
+            maxBlue = 1;
+
+        return maxRed * maxGreen * maxBlue;
+    }
+
+    public static int SumMinimumCubePowers(Dictionary<int, List<List<KeyValuePair<string, int>>>> games)
+    {
+        var total = 0;
+        foreach (var game in games)
+            total += FindMinimumCubePowers(game.Value);
+
+        return total;
     }
 }
