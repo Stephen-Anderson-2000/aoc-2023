@@ -4,7 +4,8 @@ using aoc_2023.Days;
 
 var days = new Dictionary<int, string>
 {
-    { 1, "Trebuchet?" }
+    { 1, "Trebuchet?" },
+    { 2, "Cube Conundrum" }
 };
 
 void PrintAvailable()
@@ -26,6 +27,11 @@ switch (userChoice)
 {
     case 1:
         Console.WriteLine($"{Day1.SumCalibrationValues(lines)}");
+        break;
+    case 2:
+        var input = Day2.ReadGameInput(lines);
+        Console.WriteLine($"{Day2.SumPossibleGameIDs(input)}");
+        Console.WriteLine($"{Day2.SumMinimumCubePowers(input)}");
         break;
     default:
         Console.WriteLine("Day not yet supported");
